@@ -1,5 +1,6 @@
 const db = require("../db");
 const Sequelize = require("sequelize");
+const PracticianFile = require("../PracticianFile/model");
 
 const UsersDetail = db.define(
   "usersDetail",
