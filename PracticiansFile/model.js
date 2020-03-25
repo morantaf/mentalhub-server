@@ -1,5 +1,6 @@
 const db = require("../db");
 const Sequelize = require("sequelize");
+const PatientFile = require("../PatientFile/model");
 
 const PracticiansFile = db.define(
   "PracticiansFile",
@@ -18,8 +19,10 @@ const PracticiansFile = db.define(
     }
   },
   {
-    timestamp: false
+    timestamps: false
   }
 );
+
+PatientFile.belongsTo(PracticiansFile);
 
 module.exports = PracticiansFile;
