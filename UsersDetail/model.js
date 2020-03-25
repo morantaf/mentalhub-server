@@ -16,6 +16,10 @@ const UsersDetail = db.define(
       type: Sequelize.STRING,
       allowNull: false
     },
+    profilePicture: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
     whatsAppNumber: {
       type: Sequelize.STRING,
       allowNull: true

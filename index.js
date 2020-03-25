@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./db");
 const UsersDetail = require("./UsersDetail/model");
+const PracticianFile = require("./PracticianFile/model");
 const app = express();
 const corsMiddleware = cors();
 const jsonParser = express.json();
