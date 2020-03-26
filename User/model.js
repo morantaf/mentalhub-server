@@ -18,6 +18,10 @@ const User = db.define(
       type: Sequelize.STRING,
       allowNull: false
     },
+    password: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
     profilePicture: {
       type: Sequelize.STRING,
       allowNull: true
@@ -46,4 +50,5 @@ const User = db.define(
 
 PracticianFile.belongsTo(User);
 PatientFile.belongsTo(User);
+User.hasOne(PracticianFile);
 module.exports = User;
