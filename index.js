@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const db = require("./db");
-const UsersDetail = require("./UsersDetail/model");
+const userRouter = require("./User/router");
 const PracticiansFile = require("./PracticiansFile/model");
 const Appointment = require("./Appointment/model");
 const app = express();
@@ -13,3 +12,4 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.use(corsMiddleware);
 app.use(jsonParser);
+app.use(userRouter);

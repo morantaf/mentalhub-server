@@ -22,4 +22,6 @@ const Appointment = db.define(
 
 Appointment.belongsTo(PracticianFile);
 Appointment.belongsTo(PatientFile);
+PracticianFile.hasMany(Appointment);
+PatientFile.hasMany(Appointment);
 module.exports = Appointment;

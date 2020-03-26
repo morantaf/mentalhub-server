@@ -24,5 +24,6 @@ const PracticiansFile = db.define(
 );
 
 PatientFile.belongsTo(PracticiansFile);
+PracticiansFile.hasMany(PatientFile);
 
 module.exports = PracticiansFile;

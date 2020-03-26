@@ -3,8 +3,8 @@ const Sequelize = require("sequelize");
 const PracticianFile = require("../PracticiansFile/model");
 const PatientFile = require("../PatientFile/model");
 
-const UsersDetail = db.define(
-  "usersDetail",
+const User = db.define(
+  "users",
   {
     firstName: {
       type: Sequelize.STRING,
@@ -44,6 +44,6 @@ const UsersDetail = db.define(
   }
 );
 
-PracticianFile.belongsTo(UsersDetail);
-PatientFile.belongsTo(UsersDetail);
-module.exports = UsersDetail;
+PracticianFile.belongsTo(User);
+PatientFile.belongsTo(User);
+module.exports = User;
