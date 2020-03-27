@@ -5,6 +5,10 @@ const PatientFile = require("../PatientFile/model");
 const PracticiansFile = db.define(
   "PracticiansFile",
   {
+    // information: {
+    //   type: Sequelize.TEXT,
+    //   allowNull: true
+    // },
     specializations: {
       type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false
