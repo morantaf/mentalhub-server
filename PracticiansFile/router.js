@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const PracticiansFile = require("../PracticiansFile/model");
 const User = require("../User/model");
+const auth = require("../auth/middleware");
 
 const router = new Router();
 
@@ -11,7 +12,8 @@ async function getPracticians(request, response, next) {
 
     const practicians = await PracticiansFile.findAndCountAll({
       limit,
-      offset
+      offset,
+      include: [User]
     });
 
     response.json(practicians);
@@ -22,14 +24,8 @@ async function getPracticians(request, response, next) {
 
 async function createPracticianFile(request, response, next) {
   try {
-    //const fullRequest = { ...request.body, userId: request.user.dataValues.id };
-    const test = {
-      specializations: ["anxiety", "sexual disorder"],
-      education: ["PhD", "Master"],
-      prices: [50, 60],
-      userId: 1
-    };
-    const practicianFile = await PracticiansFile.create(test);
+    const fullRequest = { ...request.body, userId: request.user.dataValues.id };
+    const practicianFile = await PracticiansFile.create(fullRequest);
     response.json(practicianFile);
   } catch (error) {
     next(error);
@@ -38,9 +34,8 @@ async function createPracticianFile(request, response, next) {
 
 async function getUniquePractician(request, response, next) {
   try {
-    const userId = request.params.id;
-    const uniquePractician = await PracticiansFile.findAll({
-      where: { userId: userId },
+    const id = request.params.id;
+    const uniquePractician = await PracticiansFile.findByPk(id, {
       include: [User]
     });
     response.json(uniquePractician);
@@ -51,6 +46,6 @@ async function getUniquePractician(request, response, next) {
 
 router.get("/practicians", getPracticians);
 router.get("/practicians/:id", getUniquePractician);
-router.post("/practicians", createPracticianFile);
+router.post("/practicians", auth, createPracticianFile);
 
 module.exports = router;
