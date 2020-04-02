@@ -1,7 +1,7 @@
 const db = require("../db");
 const Sequelize = require("sequelize");
-const PracticianFile = require("../PracticiansFile/model");
-const PatientFile = require("../PatientFile/model");
+const PracticiansFile = require("../PracticiansFile/model");
+const PatientsFile = require("../PatientsFile/model");
 
 const User = db.define(
   "users",
@@ -48,7 +48,7 @@ const User = db.define(
   }
 );
 
-PracticianFile.belongsTo(User);
-PatientFile.belongsTo(User);
-User.hasOne(PracticianFile);
+PracticiansFile.belongsTo(User);
+PatientsFile.belongsTo(User);
+User.hasOne(PracticiansFile);
 module.exports = User;
