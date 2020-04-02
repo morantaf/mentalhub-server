@@ -1,21 +1,22 @@
 const db = require("../db");
 const Sequelize = require("sequelize");
-const PatientFile = require("../PatientFile/model");
+const PatientsFile = require("../PatientsFile/model");
 
 const PracticiansFile = db.define(
   "PracticiansFile",
   {
+    presentation: {
+      type: Sequelize.TEXT,
+      allowNull: true
+    },
     specializations: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
-      allowNull: false
+      type: Sequelize.ARRAY(Sequelize.STRING)
     },
     education: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
-      allowNull: false
+      type: Sequelize.ARRAY(Sequelize.JSON)
     },
     prices: {
-      type: Sequelize.ARRAY(Sequelize.INTEGER),
-      allowNull: false
+      type: Sequelize.ARRAY(Sequelize.JSON)
     }
   },
   {
@@ -23,6 +24,7 @@ const PracticiansFile = db.define(
   }
 );
 
-PatientFile.belongsTo(PracticiansFile);
+PatientsFile.belongsTo(PracticiansFile);
+PracticiansFile.hasMany(PatientsFile);
 
 module.exports = PracticiansFile;

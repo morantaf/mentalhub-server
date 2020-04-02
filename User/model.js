@@ -1,10 +1,10 @@
 const db = require("../db");
 const Sequelize = require("sequelize");
-const PracticianFile = require("../PracticiansFile/model");
-const PatientFile = require("../PatientFile/model");
+const PracticiansFile = require("../PracticiansFile/model");
+const PatientsFile = require("../PatientsFile/model");
 
-const UsersDetail = db.define(
-  "usersDetail",
+const User = db.define(
+  "users",
   {
     firstName: {
       type: Sequelize.STRING,
@@ -15,6 +15,10 @@ const UsersDetail = db.define(
       allowNull: false
     },
     email: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    password: {
       type: Sequelize.STRING,
       allowNull: false
     },
@@ -44,6 +48,7 @@ const UsersDetail = db.define(
   }
 );
 
-PracticianFile.belongsTo(UsersDetail);
-PatientFile.belongsTo(UsersDetail);
-module.exports = UsersDetail;
+PracticiansFile.belongsTo(User);
+PatientsFile.belongsTo(User);
+User.hasOne(PracticiansFile);
+module.exports = User;

@@ -1,13 +1,17 @@
 const db = require("../db");
 const Sequelize = require("sequelize");
-const PracticianFile = require("../PracticiansFile/model");
-const PatientFile = require("../PatientFile/model");
+const PracticiansFile = require("../PracticiansFile/model");
+const User = require("../User/model");
 
 const Appointment = db.define(
   "appointment",
   {
-    appointmentTime: {
-      type: Sequelize.RANGE(Sequelize.DATE),
+    startDate: {
+      type: Sequelize.DATE,
+      allowNull: false
+    },
+    endDate: {
+      type: Sequelize.DATE,
       allowNull: false
     },
     report: {
@@ -20,6 +24,8 @@ const Appointment = db.define(
   }
 );
 
-Appointment.belongsTo(PracticianFile);
-Appointment.belongsTo(PatientFile);
+Appointment.belongsTo(PracticiansFile);
+Appointment.belongsTo(User);
+PracticiansFile.hasMany(Appointment);
+User.hasMany(Appointment);
 module.exports = Appointment;
