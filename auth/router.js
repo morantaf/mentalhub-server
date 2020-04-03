@@ -21,6 +21,7 @@ router.post("/login", (request, response, next) => {
           response.send({
             username: user.username,
             userId: user.id,
+            practician: user.practician,
             jwt: toJWT({ userId: user.id })
           });
         } else {
