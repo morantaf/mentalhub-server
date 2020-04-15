@@ -19,7 +19,7 @@ async function getAppointmentPractician(request, response, next) {
   try {
     const practicianId = request.params.id;
     const appointments = await Appointment.findAll({
-      where: { PracticiansFileId: practicianId }
+      where: { practiciansFileId: practicianId },
     });
 
     response.json(appointments);
