@@ -13,7 +13,7 @@ async function getPracticians(request, response, next) {
     const practicians = await PracticiansFile.findAndCountAll({
       limit,
       offset,
-      include: [User]
+      include: [User],
     });
 
     response.json(practicians);
@@ -36,9 +36,21 @@ async function getUniquePractician(request, response, next) {
   try {
     const id = request.params.id;
     const uniquePractician = await PracticiansFile.findByPk(id, {
-      include: [User]
+      include: [User],
     });
     response.json(uniquePractician);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function editPractician(request, response, next) {
+  try {
+    const id = request.params.id;
+    const practician = await PracticiansFile.findByPk(id);
+
+    const updatedPractician = await practician.update(request.body);
+    response.json(updatedPractician);
   } catch (error) {
     next(error);
   }
@@ -47,5 +59,6 @@ async function getUniquePractician(request, response, next) {
 router.get("/practicians", getPracticians);
 router.get("/practicians/:id", getUniquePractician);
 router.post("/practicians", auth, createPracticianFile);
+router.put("/practicians/:id", auth, editPractician);
 
 module.exports = router;

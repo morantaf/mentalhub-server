@@ -7,7 +7,7 @@ const router = new Router();
 async function createAppointment(request, response, next) {
   try {
     const fullRequest = { ...request.body, userId: request.user.dataValues.id };
-
+    console.log("fullRequest ?", fullRequest);
     const appointment = await Appointment.create(fullRequest);
     response.json(appointment);
   } catch (error) {

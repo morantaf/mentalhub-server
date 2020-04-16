@@ -17,7 +17,9 @@ async function createUser(request, response, next) {
       };
       const createUser = await User.create(user);
       const userId = createUser.id;
-      const createPracticianFile = await PracticianFile.create({ userId });
+      if (practician) {
+        const createPracticianFile = await PracticianFile.create({ userId });
+      }
       response.json(createUser);
     }
   } catch (error) {
