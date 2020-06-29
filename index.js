@@ -5,12 +5,15 @@ const practicianRouter = require("./PracticiansFile/router");
 const patientRouter = require("./PatientsFile/router");
 const appointmentRouter = require("./Appointment/router");
 const authRouter = require("./auth/router");
+const dataSeed = require("./dataSeed");
 const app = express();
 const corsMiddleware = cors();
 const jsonParser = express.json();
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+dataSeed();
 
 app.use(corsMiddleware);
 app.use(jsonParser);
