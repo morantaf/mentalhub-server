@@ -250,4 +250,4 @@ const dataSeed = async () => {
   }
 };
 
-dataSeed();
+module.exports = dataSeed;
