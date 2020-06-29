@@ -1,13 +1,13 @@
 const { Router } = require("express");
 const User = require("./model");
 const bcrypt = require("bcrypt");
-const PracticianFile = require("../PracticiansFile/model");
 
 const router = new Router();
 
 async function createUser(request, response, next) {
   try {
     const { email, password, practician, firstName, lastName } = request.body;
+
     if (!email || !password || !firstName || !lastName) {
       response.status(400).send("Please complete the form");
     } else {

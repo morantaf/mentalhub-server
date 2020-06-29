@@ -19,6 +19,7 @@ router.post("/login", (request, response, next) => {
             .status(400)
             .send({ message: "User with that email doesn't exist" });
         } else if (bcrypt.compareSync(request.body.password, user.password)) {
+
           if (user.practician) {
             PracticiansFile.findOne(
               { where: { userId: user.id } },
