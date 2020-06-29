@@ -2,13 +2,17 @@ const { Router } = require("express");
 const PracticiansFile = require("../PracticiansFile/model");
 const User = require("../User/model");
 const auth = require("../auth/middleware");
+const Sequelize = require("sequelize");
 
 const router = new Router();
 
 async function getPracticians(request, response, next) {
   try {
-    const limit = request.query.limit || 20;
+    const limit = request.query.limit || 10;
     const offset = request.query.offset || 0;
+    const search = request.query.search;
+
+    console.log("limit", limit);
 
     const practicians = await PracticiansFile.findAndCountAll({
       limit,
@@ -16,7 +20,24 @@ async function getPracticians(request, response, next) {
       include: [User],
     });
 
-    response.json(practicians);
+    if (search) {
+      const searchedPracticians = practicians.rows.filter((practician) =>
+        practician.dataValues.specializations.find(
+          (element) => element.toLowerCase() === search.toLowerCase()
+        )
+      );
+
+      console.log(practicians.rows);
+
+      const dataToSend = {
+        count: searchedPracticians.length,
+        rows: searchedPracticians,
+      };
+
+      response.json(dataToSend);
+    } else {
+      response.json(practicians);
+    }
   } catch (error) {
     next(error);
   }
