@@ -25,7 +25,7 @@ const dataSeed = async () => {
       education: [
         {
           school: "University of Paris",
-          diploma: "Behavioural Pyshcology PHD",
+          diploma: "Behavioural Pyschology PHD",
           description:
             "Pellentesque sed turpis nec arcu mattis mollis quis et purus. Curabitur euismod risus nec massa vulputate feugiat. Pellentesque non enim at arcu tempus ullamcorper ultricies a lorem. Proin posuere, enim eu pretium mattis, mi nulla auctor nunc, pellentesque laoreet dui magna eu quam. Mauris tempor ante eu nunc finibus placerat.",
           date: "2001",
@@ -107,7 +107,7 @@ const dataSeed = async () => {
       email: "arnaud.niang@email.com",
       password: bcrypt.hashSync("blabla", 10),
       profilePicture:
-        "https://static.fashionbeans.com/wp-content/uploads/2017/11/oldermodel2.jpg",
+        "https://50bold.com/wp-content/uploads/2018/04/grooming.jpg",
       whatsAppNumber: "+31625978742",
       gender: "Man",
       practician: true,
@@ -177,6 +177,66 @@ const dataSeed = async () => {
       education: [
         {
           school: "University of New York",
+          diploma: "Master degree in clinical Psychology",
+          description:
+            "Pellentesque sed turpis nec arcu mattis mollis quis et purus. Curabitur euismod risus nec massa vulputate feugiat. Pellentesque non enim at arcu tempus ullamcorper ultricies a lorem. Proin posuere, enim eu pretium mattis, mi nulla auctor nunc, pellentesque laoreet dui magna eu quam. Mauris tempor ante eu nunc finibus placerat.",
+          date: "1995",
+        },
+      ],
+      prices: [{ Adult: 50 }, { Couple: 90 }, { Children: 40 }],
+    });
+
+    const drJessicaZhang = await User.create({
+      firstName: "Jessica",
+      lastName: "Zhang",
+      email: "jessica.zhang@email.com",
+      password: bcrypt.hashSync("blabla", 10),
+      profilePicture:
+        "https://i1.wp.com/www.torontophotographerz.com/wp-content/uploads/2017/06/Business-portrait-18.jpg?fit=800%2C1200",
+      whatsAppNumber: "+31625978742",
+      gender: "Woman",
+      practician: true,
+      languages: ["English", "Chinese", "Dutch"],
+    });
+
+    const drJessicaZhangFile = await PracticianFile.create({
+      userId: drJessicaZhang.id,
+      presentation:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam hendrerit est quis risus viverra, quis molestie libero varius. Etiam dapibus eros ac sem sodales elementum. Duis pretium lobortis congue. Phasellus euismod justo vitae quam condimentum, sit amet elementum eros ornare. Mauris pellentesque consectetur scelerisque. Nam congue augue dui, vel consectetur lorem consequat nec. Donec aliquam auctor risus ac pharetra.",
+      specializations: ["CBT", "Phobia"],
+      education: [
+        {
+          school: "University of Honk Kong",
+          diploma: "Master degree in clinical Psychology",
+          description:
+            "Pellentesque sed turpis nec arcu mattis mollis quis et purus. Curabitur euismod risus nec massa vulputate feugiat. Pellentesque non enim at arcu tempus ullamcorper ultricies a lorem. Proin posuere, enim eu pretium mattis, mi nulla auctor nunc, pellentesque laoreet dui magna eu quam. Mauris tempor ante eu nunc finibus placerat.",
+          date: "1995",
+        },
+      ],
+      prices: [{ Adult: 50 }, { Couple: 90 }, { Children: 40 }],
+    });
+
+    const drMauriceGenevoix = await User.create({
+      firstName: "Maurice",
+      lastName: "Genevoix",
+      email: "maurice.genevoix@email.com",
+      password: bcrypt.hashSync("blabla", 10),
+      profilePicture:
+        "https://www.bpimaging.com/assets/uploads/2015/02/business-portrait-photography-ford-motor-company-executive.jpg",
+      whatsAppNumber: "+31625978742",
+      gender: "Woman",
+      practician: true,
+      languages: ["English", "French", "Dutch"],
+    });
+
+    const drMauriceGenevoixFile = await PracticianFile.create({
+      userId: drMauriceGenevoix.id,
+      presentation:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam hendrerit est quis risus viverra, quis molestie libero varius. Etiam dapibus eros ac sem sodales elementum. Duis pretium lobortis congue. Phasellus euismod justo vitae quam condimentum, sit amet elementum eros ornare. Mauris pellentesque consectetur scelerisque. Nam congue augue dui, vel consectetur lorem consequat nec. Donec aliquam auctor risus ac pharetra.",
+      specializations: ["Psychoanalysis", "Trauma healing", "Couple Therapy"],
+      education: [
+        {
+          school: "University of Poitiers",
           diploma: "Master degree in clinical Psychology",
           description:
             "Pellentesque sed turpis nec arcu mattis mollis quis et purus. Curabitur euismod risus nec massa vulputate feugiat. Pellentesque non enim at arcu tempus ullamcorper ultricies a lorem. Proin posuere, enim eu pretium mattis, mi nulla auctor nunc, pellentesque laoreet dui magna eu quam. Mauris tempor ante eu nunc finibus placerat.",
